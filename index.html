@@ -128,11 +128,33 @@
         }
 
         .btn-secondary:hover {
-            background-color: #4752c4;
+            background-color: #45a049;
             transform: translateY(-3px);
         }
 
         .btn-secondary:active {
+            transform: translateY(1px);
+        }
+
+        /* Style for the contact button */
+        .btn-contact {
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            background-color: #5865f2; /* Green color for the contact button */
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 200px;
+        }
+
+        .btn-contact:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+
+        .btn-contact:active {
             transform: translateY(1px);
         }
 
@@ -193,6 +215,8 @@
             <button class="btn-primary" onclick="location.href='ai-creations.html'">Get started</button>
             <!-- Secondary button -->
             <button class="btn-secondary" onclick="window.open('https://discord.gg/rUPh7f4UPX', '_blank')">Discord Community</button>
+            <!-- Contact button -->
+            <button class="btn-contact" onclick="location.href='contactlouisi.html'">Contact</button>
         </div>
     </div>
 </body>
