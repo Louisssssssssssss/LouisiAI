@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AI Creations - Louisi AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #202225;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        /* Style pour la barre de recherche */
+        .search-container {
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-container input {
+            padding: 10px;
+            width: 100%;
+            max-width: 500px;
+            border: none;
+            border-radius: 50px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .image-container {
+            background-color: #2f3136;
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 15px;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-container .prompt {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            color: #b9bbbe;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none; /* Aucun événement de souris pour cet élément */
+            transition: opacity 0.3s ease;
+            z-index: 1; /* .prompt en dessous */
+        }
+
+        .image-container:hover img {
+            opacity: 0;
+        }
+
+        .image-container:hover .prompt {
+            display: flex;
+            opacity: 1;
+            pointer-events: auto; /* Activer les événements de souris sur hover */
+        }
+
+        .copy-prompt {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background-color: #5865f2;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 2; /* Assure que le bouton est au-dessus de la couche .prompt */
+            position: relative; /* Nécessaire pour le z-index */
+            pointer-events: auto; /* Assure que le bouton est cliquable */
+        }
+
+        .copy-prompt:hover {
+            background-color: #4752c4;
+        }
+
+        .copy-prompt.copied {
+            background-color: #28a745;
+            transform: scale(1.1);
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background-color: #5865f2;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #4752c4;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Creations</h1>
+
+    <!-- Barre de recherche -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for an image prompt...">
+    </div>
+
+    <div class="gallery" id="gallery">
+        <div class="image-container">
+            <img src="image1.png" alt="AI Creation 1">
+            <p class="prompt">Warm and inviting photograph of a cozy, contemporary dining room. The space features a wooden dining table with soft, curved edges, complemented by vibrant, patterned rugs in shades of mustard, teal, and deep red. The room is filled with natural textures like woven baskets, soft cushions, and colorful ceramic decor, with large windows allowing natural light to flood in. Pendant lights with soft, warm bulbs hang above the table, while plush armchairs and indoor plants enhance the homey atmosphere. The shot, taken with a Sony A7R IV using a 24mm f/1.4 lens, should capture the warmth of the room, with rich colors and textures, and the final image in 8K resolution, focusing on the intimate, lived-in feel </p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image2.png" alt="AI Creation 2">
+            <p class="prompt">A small world made of towering books, with tiny people climbing, reading, and building shelters from the pages, captured in hyper-realistic photography. The scene has a whimsical, storybook feel with detailed textures of paper and ink. The miniature characters interact with oversized objects like bookmarks, quills, and old-timey spectacles.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image3.png" alt="AI Creation 3">
+            <p class="prompt">1976 vintage poster featuring a rural man surrounded by pigs, gazing down at a smartphone. The background is pink and exhibits a postmodern collage style. The artwork reflects the orderly symmetry characteristic of Loretta Lux and Eric Ravilious, presenting a voyeuristic perspective typical of Associated Press photography.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image4.png" alt="AI Creation 4">
+            <p class="prompt">Several girls are partially buried up to their waists in countless small, realistic white sugar cubes. The cubes create a vast white space, with the overall scene emphasizing the sharp detail and texture of the sugar cubes.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image5.png" alt="AI Creation 5">
+            <p class="prompt">A young man, 24 years old, of French nationality, around 1.80m tall. He has an athletic yet slim build, with dark brown, slightly curly, medium-length hair and a short, stubbled beard. His eyes are green, giving a look that is both sharp and dreamy. He is wearing casual jeans and a simple t-shirt, complemented by an open plaid shirt. The atmosphere is relaxed, with an urban Parisian background. The character has a modern, youthful style, reflecting a personality that is both sociable and thoughtful. He could be imagined sitting at a café terrace or walking through a park with a laid-back attitude.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image6.png" alt="AI Creation 6">
+            <p class="prompt">A realistic scene of a kiwi bird dressed in an American explorer's outfit, complete with a small safari hat and utility vest, standing in the middle of a dense jungle. Surrounding the kiwi are human explorers in rugged gear, along with armed guards providing protection. The jungle environment is lush and vibrant, with towering trees, thick vines, and tropical plants, while sunlight filters through the dense canopy. The atmosphere captures the intensity and excitement of a real expedition, with the kiwi leading the group through the wild terrain.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image7.png" alt="AI Creation 7">
+            <p class="prompt">Still life photography, small macaron delicately placed on a bed of light mousse in a crystal glass, with a fine gold leaf garnish on top. Close-up, luxury minimalist style.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+    </div>
+
+    <button class="back-button" onclick="location.href='home.html'">Home</button>
+
+    <script>
+        // Fonction pour copier le prompt
+        function copyPrompt(button) {
+            const promptElement = button.previousElementSibling;
+            const promptText = promptElement.textContent;
+
+            navigator.clipboard.writeText(promptText).then(() => {
+                button.classList.add("copied");
+                setTimeout(() => {
+                    button.classList.remove("copied");
+                }, 300);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Fonction pour la recherche
+        const searchInput = document.getElementById('searchInput');
+        const gallery = document.getElementById('gallery');
+        const imageContainers = gallery.getElementsByClassName('image-container');
+
+        searchInput.addEventListener('input', function() {
+            const filter = searchInput.value.toLowerCase();
+
+            for (let i = 0; i < imageContainers.length; i++) {
+                const promptText = imageContainers[i].querySelector('.prompt').textContent.toLowerCase();
+
+                if (promptText.includes(filter)) {
+                    imageContainers[i].style.display = '';
+                } else {
+                    imageContainers[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
