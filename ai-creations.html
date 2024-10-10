@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AI Creations - Louisi AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #202225;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .image-container {
+            background-color: #2f3136;
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 15px;
+            transition: opacity 0.3s ease; /* Pour l'animation d'opacité */
+        }
+
+        .image-container .prompt {
+            display: none; /* Masqué par défaut */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(30, 30, 30, 0.8); /* Fond flou */
+            border-radius: 15px; /* Coins arrondis */
+            color: #b9bbbe;
+            font-size: 14px;
+            margin-top: 10px; /* Un peu d'espace au-dessus */
+            display: flex; /* Pour centrer le texte */
+            align-items: center; /* Centrer verticalement */
+            justify-content: center; /* Centrer horizontalement */
+            transition: opacity 0.3s ease; /* Pour l'animation d'opacité */
+            opacity: 0; /* Masqué par défaut */
+            pointer-events: none; /* Ne pas intercepter les clics */
+        }
+
+        .image-container:hover img {
+            opacity: 0; /* Masque l'image au survol */
+        }
+
+        .image-container:hover .prompt {
+            display: flex; /* Affiche le prompt au survol */
+            opacity: 1; /* Affiche le prompt */
+            pointer-events: auto; /* Permet d'intercepter les clics */
+        }
+
+        .copy-prompt {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background-color: #5865f2;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Ajout de la transition pour l'animation */
+            position: relative; /* Pour le positionnement */
+        }
+
+        .copy-prompt:hover {
+            background-color: #4752c4;
+        }
+
+        .copy-prompt.copied {
+            background-color: #28a745; /* Couleur verte */
+            transform: scale(1.1); /* Effet d'extension */
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background-color: #5865f2;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #4752c4;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Creations</h1>
+    <div class="gallery">
+        <div class="image-container">
+            <img src="image1.png" alt="AI Creation 1">
+            <p class="prompt">Prompt: Warm and inviting photograph of a cozy, contemporary dining room. The space features a wooden dining table with soft, curved edges, complemented by vibrant, patterned rugs in shades of mustard, teal, and deep red. The room is filled with natural textures like woven baskets, soft cushions, and colorful ceramic decor, with large windows allowing natural light to flood in. Pendant lights with soft, warm bulbs hang above the table, while plush armchairs and indoor plants enhance the homey atmosphere. The shot, taken with a Sony A7R IV using a 24mm f/1.4 lens, should capture the warmth of the room, with rich colors and textures, and the final image in 8K resolution, focusing on the intimate, lived-in feel </p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image2.png" alt="AI Creation 2">
+            <p class="prompt">Prompt: A small world made of towering books, with tiny people climbing, reading, and building shelters from the pages, captured in hyper-realistic photography. The scene has a whimsical, storybook feel with detailed textures of paper and ink. The miniature characters interact with oversized objects like bookmarks, quills, and old-timey spectacles.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image3.png" alt="AI Creation 3">
+            <p class="prompt">Prompt: 1976 vintage poster featuring a rural man surrounded by pigs, gazing down at a smartphone. The background is pink and exhibits a postmodern collage style. The artwork reflects the orderly symmetry characteristic of Loretta Lux and Eric Ravilious, presenting a voyeuristic perspective typical of Associated Press photography.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image4.png" alt="AI Creation 4">
+            <p class="prompt">Prompt: Several girls are partially buried up to their waists in countless small, realistic white sugar cubes. The cubes create a vast white space, with the overall scene emphasizing the sharp detail and texture of the sugar cubes.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image5.png" alt="AI Creation 5">
+            <p class="prompt">Prompt: A young man, 24 years old, of French nationality, around 1.80m tall. He has an athletic yet slim build, with dark brown, slightly curly, medium-length hair and a short, stubbled beard. His eyes are green, giving a look that is both sharp and dreamy. He is wearing casual jeans and a simple t-shirt, complemented by an open plaid shirt. The atmosphere is relaxed, with an urban Parisian background. The character has a modern, youthful style, reflecting a personality that is both sociable and thoughtful. He could be imagined sitting at a café terrace or walking through a park with a laid-back attitude.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image6.png" alt="AI Creation 6">
+            <p class="prompt">Prompt: A realistic scene of a kiwi bird dressed in an American explorer's outfit, complete with a small safari hat and utility vest, standing in the middle of a dense jungle. Surrounding the kiwi are human explorers in rugged gear, along with armed guards providing protection. The jungle environment is lush and vibrant, with towering trees, thick vines, and tropical plants, while sunlight filters through the dense canopy. The atmosphere captures the intensity and excitement of a real expedition, with the kiwi leading the group through the wild terrain.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+        <div class="image-container">
+            <img src="image7.png" alt="AI Creation 7">
+            <p class="prompt">Prompt: Still life photography, small macaron delicately placed on a bed of light mousse in a crystal glass, with a fine gold leaf garnish on top. Close-up, luxury minimalist style.</p>
+            <button class="copy-prompt" onclick="copyPrompt(this)">Copy Prompt</button>
+        </div>
+    </div>
+
+    <button class="back-button" onclick="location.href='index.html'">Back to Home</button>
+
+    <script>
+        function copyPrompt(button) {
+            const promptElement = button.previousElementSibling; // Récupère le prompt précédent le bouton
+            const promptText = promptElement.textContent; // Récupère le texte du prompt
+
+            navigator.clipboard.writeText(promptText).then(() => {
+                button.classList.add("copied"); // Ajoute la classe pour l'animation
+                setTimeout(() => {
+                    button.classList.remove("copied"); // Supprime la classe après l'animation
+                }, 300); // Durée de l'animation
+            }).catch(err => {
+                console.error('Failed to copy: ', err); // Gestion des erreurs
+            });
+        }
+    </script>
+</body>
+</html>
