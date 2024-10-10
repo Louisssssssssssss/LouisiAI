@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Discord Community - Louisi AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #202225;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+            background-color: #2f3136;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .message {
+            font-size: 18px;
+            color: #b9bbbe;
+            margin-bottom: 30px;
+            animation: fadeInSub 3s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .btn-primary {
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            background-color: #7289da;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            animation: fadeInBtns 3.5s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a6cbf;
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 15px rgba(90, 108, 191, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
+
+        .background {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(114, 137, 218, 0.6);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float1 7s ease-in-out infinite;
+        }
+
+        .background2 {
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background-color: rgba(114, 137, 218, 0.4);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float2 7s ease-in-out infinite reverse;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInSub {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInBtns {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float1 {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        @keyframes float2 {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="background2"></div>
+
+    <div class="container">
+        <h1>Discord Community</h1>
+        <p class="message">Our Discord server is currently in preparation. Please check back later!</p>
+        <button class="btn-primary" onclick="location.href='index.html'">Back to Home</button>
+    </div>
+</body>
+</html>
